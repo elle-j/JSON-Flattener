@@ -28,37 +28,39 @@ public class JSONHelper {
 
   public String stringify(Map<String, ? extends Object> parsed) {
     var result = new StringBuilder();
-
-    result.append("{");
     stringify(parsed, result, 1);
-    result.append("\n}");
 
     return result.toString();
   }
 
   private void stringify(Map<String, ? extends Object> parsed, StringBuilder result, int depth) {
+    result.append("{");
+
     int count = 0;
     for (String key : parsed.keySet()) {
       boolean isLast = ++count == parsed.size();
 
-      result.append("\n" + getIndentation(depth) + "\"" + key + "\": ");
+      result.append(formatNewLine("\"" + key + "\": ", depth));
 
       Object value = parsed.get(key);
-      if (value instanceof Map) {
-        result.append("{");
+      if (isNestedObject(value))
         stringify((Map) value, result, depth + 1);
-        result.append("\n" + getIndentation(depth) + "}");
-      }
-      else {
-        if (value instanceof String)
-          result.append("\"" + value + "\"");
-        else
-          result.append(value);
-      }
+      else
+        result.append(formatValue(value));
 
       if (!isLast)
         result.append(",");
     }
+
+    result.append(formatNewLine("}", depth - 1));
+  }
+
+  private String formatNewLine(String content, int depth) {
+    return "\n" + getIndentation(depth) + content;
+  }
+
+  private Object formatValue(Object value) {
+    return value instanceof String ? "\"" + value + "\"" : value;
   }
 
   private String getIndentation(int tabs) {
@@ -67,5 +69,9 @@ public class JSONHelper {
       indentation.append("\t");
 
     return indentation.toString();
+  }
+
+  private boolean isNestedObject(Object obj) {
+    return obj instanceof Map;
   }
 }
