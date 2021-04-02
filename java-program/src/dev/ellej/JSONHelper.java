@@ -54,10 +54,10 @@ public class JSONHelper {
           result.append("\"" + value + "\"");
         else
           result.append(value);
-
-        if (!isLast)
-          result.append(",");
       }
+
+      if (!isLast)
+        result.append(",");
     }
   }
 

@@ -6,10 +6,33 @@ import java.util.Map;
 public class Main {
 
   public static void main(String[] args) {
+    var jsonHelper = new JSONHelper();
+    Map<String, ? extends Object> parsedInput = jsonHelper.parse(getDummyJson());
+
     var flattener = new Flattener();
-    Map<String, ? extends Object> output = flattener.flatten(getDummyMap());
-    for (Map.Entry entry : output.entrySet())
-      System.out.println(entry.getKey() + ": " + entry.getValue());
+    Map<String, ? extends Object> parsedOutput = flattener.flatten(parsedInput);
+
+    String json = jsonHelper.stringify(parsedOutput);
+    System.out.println(json);
+
+    // Test the stringify method for nested JSON as well
+    String unflattenedJson = jsonHelper.stringify(getDummyMap());
+    System.out.println(unflattenedJson);
+  }
+
+  private static String getDummyJson() {
+    return "{"
+            + "  \"a\": 1,"
+            + "  \"b\": true,"
+            + "  \"c\": {"
+            + "    \"d\": {"
+            + "        \"f\": 3,"
+            + "        \"g\": 2,"
+            + "        \"h\": \"\""
+            + "    },"
+            + "    \"e\": \"test\""
+            + "  }"
+            + "}";
   }
 
   private static Map<String, ? extends Object> getDummyMap() {
