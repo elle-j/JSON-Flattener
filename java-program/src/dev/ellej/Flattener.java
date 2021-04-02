@@ -10,7 +10,7 @@ public class Flattener {
 
     return output;
   }
-  
+
   private void flatten(String keyPath, Map<String, ? extends Object> input, Map<String, ? super Object> output) {
     //  pseudo code:
     //  for each key in the input map
@@ -21,5 +21,18 @@ public class Flattener {
     //		  flatten again from the updated path
     //	  else
     //		  add the path and the value to the result map
+
+    for (String key : input.keySet()) {
+      var updatedKeyPath = new StringBuilder();
+      if (keyPath.length() > 0)
+        updatedKeyPath.append(keyPath + '.');
+      updatedKeyPath.append(key);
+
+      Object value = input.get(key);
+      if (value instanceof Map)
+        flatten(updatedKeyPath.toString(), (Map) value, output);
+      else
+        output.put(updatedKeyPath.toString(), value);
+    }
   }
 }
