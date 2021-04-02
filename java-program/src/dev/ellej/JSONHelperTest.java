@@ -10,8 +10,8 @@ class JSONHelperTest {
   private JSONHelper sut = new JSONHelper();
 
   @Test
-  void shouldParseJsonIntoMap() {
-    String nestedJson = "{"
+  void shouldParseNestedJsonIntoMap() {
+    String nestedJsonInput = "{"
             + "  \"a\": 1,"
             + "  \"b\": true,"
             + "  \"c\": {"
@@ -24,7 +24,7 @@ class JSONHelperTest {
             + "  }"
             + "}";
     Map<String, ? extends Object> expected = getNestedDummyMap();
-    Map<String, ? extends Object> actual = sut.parse(nestedJson);
+    Map<String, ? extends Object> actual = sut.parse(nestedJsonInput);
 
     assertEquals(expected, actual);
   }

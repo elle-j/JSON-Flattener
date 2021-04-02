@@ -12,7 +12,7 @@ class FlattenerTest {
 
   @Test
   void shouldReturnCorrectObjectSize() {
-    int expected = 6;
+    int expected = getFlattenedDummyMap().size();
     int actual = sut.flatten(getNestedDummyMap()).size();
 
     assertEquals(expected, actual);
