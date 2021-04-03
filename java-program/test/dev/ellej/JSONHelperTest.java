@@ -177,6 +177,8 @@ class JSONHelperTest {
     if (expectedLines.size() != actualLines.length)
       return false;
 
+    // (cannot simply check if the strings are the same since
+    // the key-value pairs may appear in a different order.)
     for (String line : actualLines) {
       if (!expectedLines.contains(line))
         return false;
