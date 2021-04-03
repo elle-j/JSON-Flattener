@@ -1,54 +1,43 @@
 package dev.ellej;
 
-import java.util.HashMap;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Map;
 
 public class Main {
 
   public static void main(String[] args) {
+    String jsonInput = getInput(args);
+
     var jsonHelper = new JSONHelper();
-    Map<String, ? extends Object> parsedInput = jsonHelper.parse(getDummyJson());
+    Map<String, ? extends Object> parsedInput = jsonHelper.parse(jsonInput);
 
     var flattener = new Flattener();
     Map<String, ? extends Object> parsedOutput = flattener.flatten(parsedInput);
 
-    String json = jsonHelper.stringify(parsedOutput);
-    System.out.println(json);
-
-    // Test the stringify method for nested JSON as well
-    String unflattenedJson = jsonHelper.stringify(getDummyMap());
-    System.out.println(unflattenedJson);
+    String jsonOutput = jsonHelper.stringify(parsedOutput);
+    System.out.println(jsonOutput);
   }
 
-  private static String getDummyJson() {
-    return "{"
-            + "  \"a\": 1,"
-            + "  \"b\": true,"
-            + "  \"c\": {"
-            + "    \"d\": {"
-            + "        \"f\": 3,"
-            + "        \"g\": 2,"
-            + "        \"h\": \"\""
-            + "    },"
-            + "    \"e\": \"test\""
-            + "  }"
-            + "}";
-  }
+  private static String getInput(String[] args) {
+    // user manually provides input
+    if (args.length > 0)
+      return args[0];
 
-  private static Map<String, ? extends Object> getDummyMap() {
-    Map<String, ? super Object> inputRoot = new HashMap<>();
-    Map<String, ? super Object> inputC = new HashMap<>();
-    Map<String, ? super Object> inputD = new HashMap<>();
+    // user provides input via a previous output process (e.g through piping)
+    var input = new StringBuilder();
 
-    inputRoot.put("a", 1);
-    inputRoot.put("b", true);
-    inputRoot.put("c", inputC);
-    inputC.put("d", inputD);
-    inputC.put("e", "test");
-    inputD.put("f", 3);
-    inputD.put("g", 2);
-    inputD.put("h", "");
+    try (var br = new BufferedReader(new InputStreamReader(System.in))) {
+      String line;
+      while ((line = br.readLine()) != null)
+        input.append(line + "\n");
+    }
+    catch (IOException e) {
+      System.out.println("Please provide a JSON object.");
+      System.exit(0);
+    }
 
-    return inputRoot;
+    return input.toString();
   }
 }
