@@ -5,8 +5,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
 
+/**
+ * The entry point of the program.
+ */
 public class Main {
-
+  /**
+   * Exercise the functionality of the program.
+   *
+   * @param args - User input arguments (JSON object).
+   */
   public static void main(String[] args) {
     String jsonInput = getInput(args);
 

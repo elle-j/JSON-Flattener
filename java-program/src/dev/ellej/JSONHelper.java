@@ -6,7 +6,16 @@ import javax.script.ScriptException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A helper for transforming a JSON object.
+ */
 public class JSONHelper {
+  /**
+   * Parse JSON into a Java Map.
+   *
+   * @param json - The JSON to parse.
+   * @return The parsed JSON.
+   */
   public Map<String, ? extends Object> parse(String json) {
     ScriptEngine engine = new ScriptEngineManager().getEngineByName("javascript");
     Map<String, ? extends Object> parsed = new HashMap<>();
@@ -21,6 +30,12 @@ public class JSONHelper {
     return parsed;
   }
 
+  /**
+   * Convert parsed JSON into valid stringified JSON.
+   *
+   * @param parsed - The parsed JSON.
+   * @return Valid JSON.
+   */
   public String stringify(Map<String, ? extends Object> parsed) {
     var result = new StringBuilder();
     stringify(parsed, result, 1);
