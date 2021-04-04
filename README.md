@@ -13,13 +13,18 @@ A Java program taking JSON input and outputting a flattened JSON object.
 
 ## How to Compile and Run the Program
 
-  1. Clone the repo
-  2. Open a terminal window and navigate to the repo's root directory (*mongodb-json*) on your machine
-  3. Located in the *mongodb-json* directory, run `cd ./java-program/src/`
-  4. Run `javac -cp . ./dev/ellej/*.java` to compile the source code
-  5. Run `java dev.ellej.Main <json_object>` to run the program, replacing <json_object> with a valid JSON object
-    * E.g. `java dev.ellej.Main '{ "a": 1, "b": true, "c": { "d": 3, "e": "test" } }'`
-    * E.g. `cat /path/to/file.json | java dev.ellej.Main`
+  1. Open a terminal window (e.g. GitBash) and change the directory to where you want to place the cloned repo.
+  2. Clone the repo
+      * Using HTTPS, run `https://github.com/elle-j/mongodb-json.git`
+      * Using SSH, run `git@github.com:elle-j/mongodb-json.git` 
+  3. Change directory to the source code directory
+      * Run ` cd ./mongodb-json/java-program/src/`
+  4. Compile the source code
+      * Run `javac -cp . ./dev/ellej/*.java`
+  5. Run the program
+      * Run `java dev.ellej.Main <json_object>` (replace <json_object> with a valid JSON object)
+        * E.g. `java dev.ellej.Main '{ "a": 1, "b": true, "c": { "d": 3, "e": "test" } }'`
+        * E.g. `cat /path/to/file.json | java dev.ellej.Main`
 
 ## Assumptions
 
