@@ -7,13 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JSONHelper {
-  private ScriptEngine engine;
-
-  public JSONHelper() {
-    engine = new ScriptEngineManager().getEngineByName("javascript");
-  }
-
   public Map<String, ? extends Object> parse(String json) {
+    ScriptEngine engine = new ScriptEngineManager().getEngineByName("javascript");
     Map<String, ? extends Object> parsed = new HashMap<>();
 
     try {

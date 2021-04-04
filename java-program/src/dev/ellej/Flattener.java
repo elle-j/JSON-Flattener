@@ -23,16 +23,6 @@ public class Flattener {
   }
 
   private void flatten(String keyPath, Map<String, ? extends Object> input, Map<String, ? super Object> output) {
-    //  pseudo code:
-    //  for each key in the input map
-    //    if the key path is not at the root
-    //		  add a period to the path
-    //    add the key to the path
-    //	  if the value is a map
-    //		  flatten again from the updated path
-    //	  else
-    //		  add the path and the value to the result map
-
     for (String key : input.keySet()) {
       String updatedKeyPath = getKeyPath(keyPath, key);
       Object value = input.get(key);

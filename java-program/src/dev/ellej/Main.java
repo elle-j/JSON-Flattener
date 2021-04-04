@@ -25,9 +25,8 @@ public class Main {
     if (args.length > 0)
       return args[0];
 
-    // user provides input via a previous output process (e.g through piping)
+    // user provides input via a previous output process (e.g. through piping)
     var input = new StringBuilder();
-
     try (var br = new BufferedReader(new InputStreamReader(System.in))) {
       String line;
       while ((line = br.readLine()) != null)
