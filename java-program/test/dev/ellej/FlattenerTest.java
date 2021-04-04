@@ -19,9 +19,17 @@ class FlattenerTest {
   }
 
   @Test
-  void shouldReturnFlattenedObject() {
+  void shouldFlattenNestedObject() {
     Map<String, ? extends Object> expected = getFlattenedDummyMap();
     Map<String, ? extends Object> actual = sut.flatten(getNestedDummyMap());
+
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  void shouldHandleEmptyObject() {
+    Map<String, ? extends Object> expected = new HashMap<>();
+    Map<String, ? extends Object> actual = sut.flatten(new HashMap<>());
 
     assertEquals(expected, actual);
   }
