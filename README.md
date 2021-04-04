@@ -15,8 +15,8 @@ A Java program taking JSON input and outputting a flattened JSON object.
 
   1. Open a terminal window (e.g. GitBash) and change the directory to where you want to place the cloned repo.
   2. Clone the repo
-      * Using HTTPS, run `https://github.com/elle-j/mongodb-json.git`
-      * Using SSH, run `git@github.com:elle-j/mongodb-json.git` 
+      * Using HTTPS, run `git clone https://github.com/elle-j/mongodb-json.git`
+      * Using SSH, run `git clone git@github.com:elle-j/mongodb-json.git` 
   3. Change directory to the source code directory
       * Run ` cd ./mongodb-json/java-program/src/`
   4. Compile the source code
